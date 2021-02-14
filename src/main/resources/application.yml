@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: fitness-oauth2-api
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  main:
+    allow-bean-definition-overriding: true # TODO: Find how to remove this
+
+server:
+  port: 8091
+
+security:
+  oauth2:
+    client:
+      client-id: 
+      client-secret: 
+      access-token-uri: https://www.strava.com/oauth/token
+      user-authorization-uri: https://www.strava.com/oauth/authorize
+      scope: activity:read
+      token-name: access_token
+      authentication-scheme: query
+      client-authentication-scheme: form
+    resource:
+      user-info-uri: https://www.strava.com/api/v3/athlete
