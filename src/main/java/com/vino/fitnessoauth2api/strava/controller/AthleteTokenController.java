@@ -20,38 +20,33 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AthleteTokenController {
 
-  private final AthleteTokenRepository athleteTokenRepository;
+	private final AthleteTokenRepository athleteTokenRepository;
 
-  @RequestMapping("/principal")
-  public Principal principal(
-      @AuthenticationPrincipal Principal principal) {
+	@RequestMapping("/principal")
+	public Principal principal(@AuthenticationPrincipal Principal principal) {
 
-    return principal;
-  }
+		return principal;
+	}
 
-  @RequestMapping("/athleteToken")
-  public AthleteToken athleteToken(
-      final @AuthenticationPrincipal Principal principal) {
+	@RequestMapping("/athleteToken")
+	public AthleteToken athleteToken(final @AuthenticationPrincipal Principal principal) {
 
-    return athleteTokenRepository.save(
-        AthleteToken.builder()
-            .accessToken(getAccessToken(principal))
-            .build());
-  }
+		AthleteToken athleteToken = athleteTokenRepository
+				.save(AthleteToken.builder().accessToken(getAccessToken(principal)).build());
+		return athleteToken;
+	}
 
-  @RequestMapping("/athleteTokens")
-  public List<AthleteToken> athletes() {
-    return athleteTokenRepository.findAll();
-  }
+	@RequestMapping("/athleteTokens")
+	public List<AthleteToken> athletes() {
+		return athleteTokenRepository.findAll();
+	}
 
-  private String getAccessToken(
-      final Principal principal) {
+	private String getAccessToken(final Principal principal) {
 
-    final OAuth2Authentication oauth2Auth = (OAuth2Authentication) principal;
-    final OAuth2AuthenticationDetails oauth2AuthDetails =
-        (OAuth2AuthenticationDetails) oauth2Auth.getDetails();
+		final OAuth2Authentication oauth2Auth = (OAuth2Authentication) principal;
+		final OAuth2AuthenticationDetails oauth2AuthDetails = (OAuth2AuthenticationDetails) oauth2Auth.getDetails();
 
-    return oauth2AuthDetails.getTokenValue();
-  }
+		return oauth2AuthDetails.getTokenValue();
+	}
 
 }
