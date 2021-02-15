@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class AthleteActivityDetails {
 	
 	private Athlete athlete;
-	private List<Activity> activityList;
+	private List<StravaActivity> activityList;
 
 }

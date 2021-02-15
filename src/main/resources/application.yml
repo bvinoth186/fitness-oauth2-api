@@ -5,10 +5,11 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
   main:
     allow-bean-definition-overriding: true # TODO: Find how to remove this
-
+  data:
+    mongodb: 
+      uri:   
 server:
   port: 8091
-
 security:
   oauth2:
     client:
