@@ -10,6 +10,8 @@ public interface StravaActivityRepository extends MongoRepository<Activity, Stri
 	
 	public List<Activity> findByUserIdAndMonth(int userId, String month);
 	
+	public List<Activity> findByMonth(String month);
+	
 	
 
 }
